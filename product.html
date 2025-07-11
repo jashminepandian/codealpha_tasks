@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>E-commerce Store</h1>
+    <nav>
+      <a href="cart.html">🛒 View Cart</a>
+      <a href="index.html">← Back to Products</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="product-detail">
+      <img src="images/shirt.jpg" alt="Blue T-Shirt" />
+      <div>
+        <h2>Blue T-Shirt</h2>
+        <p>Comfortable cotton shirt with perfect fit.</p>
+        <p><strong>₹499</strong></p>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+<script>
+  function renderCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsDiv = document.getElementById("cart-items");
+    const totalSpan = document.getElementById("total");
+
+    cartItemsDiv.innerHTML = "";
+    let total = 0;
+
+    if (cart.length === 0) {
+      cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+      totalSpan.textContent = "0";
+      return;
+    }
+
+    cart.forEach(item => {
+      total += item.price * item.quantity;
+      cartItemsDiv.innerHTML += `
+        <div class="cart-item">
+          <h3>${item.name}</h3>
+          <p>Price: ₹${item.price}</p>
+          <p>Quantity: ${item.quantity}</p>
+        </div>
+        <hr />
+      `;
+    });
+
+    totalSpan.textContent = total;
+  }
+
+  function checkout() {
+    alert("This is a demo. No payment integration yet.");
+    localStorage.removeItem("cart");
+    renderCart(); // Reset cart UI
+  }
+
+  renderCart();
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to your dashboard, {{ request.user.username }}!</h1>
+    <p>This is your project management space.</p>
+
+    <hr>
+
+    <h3>Project Actions</h3>
+    <ul>
+        <li><a href="{% url 'create_project' %}">Create New Project</a></li>
+        <li><a href="{% url 'project_list' %}">View All Projects</a></li>
+    </ul>
+</body>
+</html>
+

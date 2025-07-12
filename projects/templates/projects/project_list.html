@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Projects</title>
+</head>
+<body>
+    <h1>All Projects</h1>
+
+<ul>
+  {% for project in projects %}
+    <li>
+      <strong><a href="{% url 'project_detail' project.id %}">{{ project.name }}</a></strong><br>
+      Description: {{ project.description }}<br>
+      Created at: {{ project.created_at|date:"Y-m-d H:i" }}
+    </li>
+  {% empty %}
+    <li>No projects found.</li>
+  {% endfor %}
+</ul>
+
+    <br>
+    <a href="{% url 'create_project' %}">➕ Create New Project</a><br>
+    <a href="{% url 'dashboard' %}">🔙 Back to Dashboard</a>
+</body>
+</html>
